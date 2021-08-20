@@ -1,5 +1,5 @@
 # ACE2_2S21_G10
-###Grupo 10  
+Grupo 10  
 César Andrés Rodríguez López 200819476  
 Mónica Raquel Calderón 201213062  
 Irving Samuel Rosales Dominguez 201403904  
