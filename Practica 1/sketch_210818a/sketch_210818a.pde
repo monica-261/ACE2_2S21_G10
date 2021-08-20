@@ -106,7 +106,7 @@ void draw(){
 
   if(ran == 0){ // Moviminto de Norte a sur
     image(sur, 35, 5, width/25, height/25);
-    text("Direccion del Viento: Sur",90,20);
+    text("Direccion del Viento: Sur. Velocidad: " + velocidad,90,20);
     for(int i=0;i<5;i++){
       for (int j = i ; j < particula; j++) {
         fill(255,0,0);
@@ -132,7 +132,8 @@ void draw(){
  
   }else if(ran == 1){ // Movimiento de Oeste a Este
     fill(255,255,0);
-    text("Direccion del Viento: Este",10,20);
+    image(este, 35, 5, width/25, height/25);
+    text("Direccion del Viento: Este. Velocidad: " + velocidad,90,20);
     particula = 0;
     for(int i=0;i<5;i++){
       if(i<3){
@@ -160,7 +161,8 @@ void draw(){
     }
   }else if(ran == 2){ //Movimiento de Sur a Norte
     fill(219, 112, 147);
-    text("Direccion del Viento: Norte",10,20);
+    image(norte, 35, 5, width/25, height/25);
+    text("Direccion del Viento: Norte. Velocidad: " + velocidad,90,20);
     //ellipse(width/2,height-z,radio,radio);  
     for(int i=0;i<3;i++){
       for(int j=0; j<5; j++){
@@ -207,7 +209,8 @@ void draw(){
     
   }else if(ran == 3){ //Movimiento de Este a Oeste
     fill(0,100,0);
-    text("Direccion del Viento: Oeste",10,20);
+    image(oeste, 35, 5, width/25, height/25);
+    text("Direccion del Viento: Oeste. Velocidad: " + velocidad,90,20);
     //ellipse(width-z, height/2,radio,radio);
     for(int i=0;i<5;i++){
       if(i==2){
