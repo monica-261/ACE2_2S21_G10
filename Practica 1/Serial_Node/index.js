@@ -1,23 +1,28 @@
-const serialport = require("serialport")
-const readLine = require("@serialport/parser-readline")
-const SerialPort = require("serialport")
 
-const port = new SerialPort('COM6', { baudRate: 9600}) 
+const SerialPort = require('serialport');
+const ReadLine = require('@serialport/parser-readline');
+const fetch = require("node-fetch");
 
-const parser = port.pipe(new readLine({delimeter: "\n"}))
+const port = new SerialPort('COM7', {baudRate: 9600});
+const parser = port.pipe(new ReadLine({delimiter: '\n'}));
+
+
 
 port.on("open", () => {
-    console.log("Puerto abierto!")
-})
+    console.log('Se abrió la comunicación');
+});
 
-port.on("data", async (data) => {
-    let newData = JSON.parse(data)
-    postData('http://localhost:3000/medicion', {"humedad":data.humidity, "temperatura": data.temp, "velocidad_viento":data.velocity, "direccion_viento": data.direction})
+
+
+parser.on("data", data => {
+    console.log(data)
+    data=JSON.parse(data)
+    let newData = {"humedad":data.humidity, "temperatura": data.temp, "velocidad_viento":data.velocity, "direccion_viento": data.direction}
+    postData('http://localhost:3000/api/medicion', newData)
     .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
     });
-
-})
+});
 
 
 async function postData(url = '', data = {}) {
