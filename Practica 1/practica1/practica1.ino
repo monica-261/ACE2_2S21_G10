@@ -57,14 +57,14 @@ void loop() {
   Serial.println("E: "+String(valorE));
   Serial.println("NE: "+String(valorNE));*/
 
-  if(valorN>valorDeLectura) directionV="Norte";
-  else if(valorNO>valorDeLectura) directionV="NorOeste";
-  else if(valorO>valorDeLectura) directionV="Oeste";
-  else if(valorSO>valorDeLectura) directionV="SurOeste";
-  else if(valorS>valorDeLectura) directionV="Sur";
-  else if(valorSE>valorDeLectura) directionV="SurEste";
-  else if(valorE>valorDeLectura) directionV="Este";
-  else if(valorNE>valorDeLectura) directionV="NorEste";
+  if(valorN>valorDeLectura) directionV="N";
+  else if(valorNO>valorDeLectura) directionV="N";
+  else if(valorO>valorDeLectura) directionV="O";
+  else if(valorSO>valorDeLectura) directionV="O";
+  else if(valorS>valorDeLectura) directionV="S";
+  else if(valorSE>valorDeLectura) directionV="S";
+  else if(valorE>valorDeLectura) directionV="E";
+  else if(valorNE>valorDeLectura) directionV="E";
 
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature();
