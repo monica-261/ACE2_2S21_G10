@@ -1,7 +1,5 @@
 const usuarios = require('../db_apis/medicion');
 const utils = require('../utils/utils')
-const fs =  require('fs')
-const path = require('path')
 
 module.exports.registrarMedicion = async function (request, response, next) {
     try {
@@ -12,8 +10,6 @@ module.exports.registrarMedicion = async function (request, response, next) {
             temperatura: request.body.temperatura,
             direccion_viento: request.body.direccion_viento,
         }
-        
-        fs.writeFile(path.join(__dirname, '..', '..', 'mediciones.txt'), `${data.velocidad_viento}|${data.humedad}|${data.temperatura}|${data.direccion_viento}`, () => {});
 
         const result = await usuarios.registrarMedicion(data)
 

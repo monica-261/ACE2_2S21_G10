@@ -1,6 +1,10 @@
 const database = require('../services/database');
+const fs =  require('fs')
+const path = require('path')
 
 module.exports.registrarMedicion = async function(data){
+    fs.writeFile(path.join(__dirname, '..', '..', 'sketch_210818a', 'mediciones.txt'), `${data.velocidad_viento}|${data.humedad}|${data.temperatura}|${data.direccion_viento}`, () => {});
+
     let querys = []
     let binds =  []
 
