@@ -11,7 +11,7 @@ int valorSE;
 int valorE;
 int valorNE;
 
-int valorDeLectura = 925;
+int valorDeLectura = 999;
 
 float veloc1=0;
 int tiempo=0;
@@ -32,12 +32,10 @@ void loop() {
   delay(5000);
 
   v1 =(analogRead(A0)); // lectura de sensor a0
-  veloc1= (v1*0.190); // 0,190 corresponde a la pendiente de la curva aca deben poner el numero que calcularon
+  veloc1= (v1*0.52); // 0,190 corresponde a la pendiente de la curva aca deben poner el numero que calcularon
   
-  /*//if (veloc1>v2)v2=veloc1; // muestra la velocidad maxima que alcanzo 
-  Serial.print("Velocidad Del Viento: ");
-  Serial.print(veloc1);
-  Serial.println("km/h");*/
+  /*Serial.print("Velocidad Del Viento: ");
+  Serial.print(String(veloc1)+"-"+String(v1));*/
   
   valorN = analogRead(A1);
   valorNO = analogRead(A2);
@@ -78,21 +76,6 @@ void loop() {
   float hic = dht.computeHeatIndex(temperature, humidity, false);
   float hif = dht.computeHeatIndex(temperatureF, humidity);
 
-  /*Serial.print("Humedad: ");
-  Serial.print(humidity);
-  Serial.print("% Temperatura: ");
-  Serial.print(temperature);
-  Serial.print("°C ");
-  Serial.print(temperatureF);
-  Serial.print("°F Heat Index: ");
-  Serial.print(hic);
-  Serial.print("°C ");
-  Serial.print(hif);
-  Serial.println("°F ");
-  Serial.println("");
-  Serial.println("");
-  Serial.println("*******************************************************************************************************");*/
-
   String jsonOutput = "{\"humidity\": ";
   jsonOutput.concat(String(humidity));
   jsonOutput.concat(", \"temp\":");
@@ -103,5 +86,5 @@ void loop() {
   jsonOutput.concat("\""+String(directionV)+"\"");
   jsonOutput.concat("}");
   Serial.println(jsonOutput);
-  directionV="";
+  directionV=directionV;
 }
