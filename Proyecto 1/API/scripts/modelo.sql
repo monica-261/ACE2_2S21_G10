@@ -13,3 +13,5 @@ CREATE TABLE public.medicion (
     fecha_hora_fin TIMESTAMP NULL,
     CONSTRAINT fk_medicion_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
+
+ALTER TABLE public.usuario ADD CONSTRAINT usuario_un UNIQUE (usuario);

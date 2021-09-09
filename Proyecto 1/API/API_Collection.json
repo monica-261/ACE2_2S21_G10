@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "ae1efaa3-df38-46eb-8c38-f33b06435117",
+		"name": "Proyecto 1 Arqui 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"usuario\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "Se le envia el usuario y el password y retorna un mensaje, estado y id_usuario. En caso de que el login sea exitoso retorna un estado 200 si ocurrio un error viene el estado 404 con el mensaje del error."
+			},
+			"response": []
+		},
+		{
+			"name": "Registro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"test2\",\r\n    \"password\": \"123\",\r\n    \"ubicacion\": \"desconocida\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/registro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"registro"
+					]
+				},
+				"description": "Se le envia el usuario, password y ubicación, retorna un estado y mensaje. Si el usuario se registro retorna un estado 200 en caso de error estado 404 y mensaje con el error."
+			},
+			"response": []
+		},
+		{
+			"name": "Nueva Medición",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"peso\": 150.55,\r\n    \"id_usuario\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/medicion/nueva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"medicion",
+						"nueva"
+					]
+				},
+				"description": "Se le envia el peso y el id_usuario que realiza la medición, retorna un estado, mensaje y id_medición (para finalizar la medición). Retorna estado 200 en operación exitosa. En caso de error retorna estado 404 y el mensaje de error."
+			},
+			"response": []
+		},
+		{
+			"name": "Finalizar Medición",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_medicion\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/medicion/finalizar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"medicion",
+						"finalizar"
+					]
+				},
+				"description": "Se le envia el id_medición (obtenido de la nueva medición). Retorna estado 200 en caso de operación exitosa y estado 404 en caso de error."
+			},
+			"response": []
+		}
+	]
+}
