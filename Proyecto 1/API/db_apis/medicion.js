@@ -4,10 +4,11 @@ module.exports.registrarMedicion = async function(data){
     let querys = []
     let binds =  []
 
-    querys.push(`SELECT mensaje, estado, id_medicion FROM func_registro_medicion($1, $2);`)
+    querys.push(`SELECT mensaje, estado, id_medicion FROM func_registro_medicion($1, $2, $3);`)
 
     binds.push([
         data.peso,
+        data.distancia_respaldo,
         data.id_usuario,
     ])
 

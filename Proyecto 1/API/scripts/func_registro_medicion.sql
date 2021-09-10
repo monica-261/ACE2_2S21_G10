@@ -1,5 +1,6 @@
 CREATE OR REPLACE FUNCTION func_registro_medicion(
 	p_peso DECIMAL,
+	p_distancia_respaldo DECIMAL,
 	p_id_usuario INTEGER
 ) RETURNS TABLE (
 	mensaje TEXT,
@@ -15,8 +16,8 @@ AS $$
 				RETURN;
 			END IF;
 
-			INSERT INTO medicion(peso, id_usuario, fecha_hora_inicio, fecha_hora_fin)
-			VALUES(p_peso, p_id_usuario, NOW()::TIMESTAMP, NULL)
+			INSERT INTO medicion(peso, distancia_respaldo, id_usuario, fecha_hora_inicio, fecha_hora_fin)
+			VALUES(p_peso, p_distancia_respaldo, p_id_usuario, NOW()::TIMESTAMP, NULL)
 			RETURNING medicion.id_medicion INTO r_id_medicion;
 
         	RETURN QUERY SELECT 'Medición registrada con éxito!' AS mensaje, 200 AS estado, r_id_medicion AS id_medicion;

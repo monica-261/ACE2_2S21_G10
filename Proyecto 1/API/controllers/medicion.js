@@ -5,6 +5,7 @@ module.exports.registrarMedicion = async function(request, response, next){
     try {
         data = {
             peso: request.body.peso,
+            distancia_respaldo: request.body.distancia_respaldo,
             id_usuario: request.body.id_usuario,
         }
 

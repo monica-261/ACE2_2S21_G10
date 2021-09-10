@@ -15,3 +15,4 @@ CREATE TABLE public.medicion (
 );
 
 ALTER TABLE public.usuario ADD CONSTRAINT usuario_un UNIQUE (usuario);
+ALTER TABLE public.medicion ADD distancia_respaldo numeric NULL;

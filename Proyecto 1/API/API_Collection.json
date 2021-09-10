@@ -72,7 +72,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"peso\": 150.55,\r\n    \"id_usuario\": 1\r\n}",
+					"raw": "{\r\n    \"peso\": 132.56,\r\n    \"distancia_respaldo\": 15.65,\r\n    \"id_usuario\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,7 +92,7 @@
 						"nueva"
 					]
 				},
-				"description": "Se le envia el peso y el id_usuario que realiza la medición, retorna un estado, mensaje y id_medición (para finalizar la medición). Retorna estado 200 en operación exitosa. En caso de error retorna estado 404 y el mensaje de error."
+				"description": "Se le envia el peso, distancia del respaldo y el id_usuario que realiza la medición, retorna un estado, mensaje y id_medición (para finalizar la medición). Retorna estado 200 en operación exitosa. En caso de error retorna estado 404 y el mensaje de error."
 			},
 			"response": []
 		},
