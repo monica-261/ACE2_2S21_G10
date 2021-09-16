@@ -72,7 +72,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id_usuario\": 1\r\n}",
+					"raw": "{\r\n    \"id_usuario\": 1,\r\n    \"peso\": 13.10,\r\n    \"distancia_respaldo\": 70\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,7 +92,7 @@
 						"nueva"
 					]
 				},
-				"description": "Se le envia el id_usuario que realiza la medición, retorna un estado, mensaje y id_medición (para finalizar la medición e ingresar los detalles). Retorna estado 200 en operación exitosa. En caso de error retorna estado 404 y el mensaje de error."
+				"description": "Se le envia el id_usuario, peso y distancia_respaldo que realiza la medición, retorna un estado, mensaje y id_medición (para finalizar la medición e ingresar los detalles). Retorna estado 200 en operación exitosa. En caso de error retorna estado 404 y el mensaje de error."
 			},
 			"response": []
 		},
@@ -103,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id_medicion\": 1\r\n}",
+					"raw": "{\r\n    \"id_medicion\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -134,7 +134,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"peso\": 13.10,\r\n    \"distancia_respaldo\": 70,\r\n    \"id_medicion\": 1\r\n}",
+					"raw": "{\r\n    \"peso\": 13.10,\r\n    \"distancia_respaldo\": 70,\r\n    \"id_medicion\": 2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

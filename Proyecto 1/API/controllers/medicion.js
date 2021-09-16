@@ -5,6 +5,8 @@ module.exports.registrarNuevaMedicion = async function(request, response, next){
     try {
         data = {
             id_usuario: request.body.id_usuario,
+            peso: request.body.peso,
+            distancia_respaldo: request.body.distancia_respaldo,
         }
 
         const result = await medicion.registrarNuevaMedicion(data)

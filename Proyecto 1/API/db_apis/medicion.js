@@ -4,10 +4,12 @@ module.exports.registrarNuevaMedicion = async function(data){
     let querys = []
     let binds =  []
 
-    querys.push(`SELECT mensaje, estado, id_medicion FROM func_nueva_medicion($1);`)
+    querys.push(`SELECT mensaje, estado, id_medicion FROM func_nueva_medicion($1, $2, $3);`)
 
     binds.push([
         data.id_usuario,
+        data.peso,
+        data.distancia_respaldo,
     ])
 
     const result = await database.ejecutarTransaccion(querys, binds)
