@@ -9,7 +9,8 @@ router.route('/login').post(autenticacion.iniciarSesion)
 router.route('/registro').post(autenticacion.registrarUsuario)
 
 //MEDICIONES
-router.route('/medicion/nueva').post(medicion.registrarMedicion)
+router.route('/medicion/nueva').post(medicion.registrarNuevaMedicion)
+router.route('/medicion/detalle').post(medicion.registrarMedicionDetalle)
 router.route('/medicion/finalizar').post(medicion.finalizarMedicion)
 
 module.exports = router
