@@ -28,13 +28,13 @@ const Data = require('./models/Data')
     newUser.Peso = actual.Peso
     console.log(newUser)
 
-    if(newUser.name) { res.sendStatus(200); return }
+    if(actual.name) { res.json({status: "ok"}); return }
 
     let returnedUser =   new User(newUser).save(err => {
-        if (err) { console.log("Error no se pudo Crear el Usuario", err); res.sendStatus(400); return } 
+        if (err) { console.log("Error no se pudo Crear el Usuario", err); res.json({status: "error"}); return } 
               
         console.log("Usuario Creado Exitosamente");
-        res.sendStatus(200);
+        res.json({status: "created"});
         
       });
     console.log(returnedUser)
@@ -43,12 +43,17 @@ const Data = require('./models/Data')
   app.post('/setUser', function (req, res){
     let data = req.body
 
-    User.findOne({ Peso: { $gt: data.Peso - 1.5, $lt: data.Peso + 1.5  }}, 
-      function(err,obj) { 
-        if(err){ console.log("Error no se pudo Asignar el Usuario", err); res.sendStatus(400); return }
+    User.findOne({ Peso: { $gt: data.Peso - 20, $lt: data.Peso + 20  }}, 
+      function(err, obj) { 
+        if(err){ console.log("Error no se pudo Asignar el Usuario", err);  return }
         console.log('actualUser => ', obj)
-        actual = obj
-        res.sendStatus(200)
+        if(obj!=null && obj!=undefined)
+        {           
+          actual = JSON.parse(JSON.stringify(obj).replace("_", ""))
+          res.json({status: "ok"})
+        }else{
+          res.json({status: "F"})
+        }
        
       });
     
@@ -58,17 +63,16 @@ const Data = require('./models/Data')
   app.post('/setData', function (req, res){
     let data = req.body
 
-    actual.Peso = data.Peso
-
-    if(!actual.name) return
+    actual.Peso = data.Peso 
+    
+    if(actual.name==undefined) return
 
     data.user = actual
-
     new Data(data).save(err => {
-        if (err) { console.log("Error no se pudo Guardar la infomacion", err); res.sendStatus(400); return } 
+        if (err) { console.log("Error no se pudo Guardar la infomacion", err); res.json({status: "Error"}); return } 
               
         console.log("Data Creada Exitosamente");
-        res.sendStatus(200);
+        res.json({status: "ok"});
         
       });
 
