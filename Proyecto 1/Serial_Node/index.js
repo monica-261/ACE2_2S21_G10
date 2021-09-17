@@ -12,7 +12,7 @@ const URL_FINALIZAR_MEDICION = 'http://localhost:3000/api/medicion/finalizar';
 const ID_USUARIO = 1;
 let id_medicion;
 
-
+let obj = {}
 
 port.on("open", () => {
     console.log('Se abrió la comunicación');
@@ -22,31 +22,68 @@ port.on("open", () => {
 
 parser.on("data", data => {
     console.log(data)
-    data=JSON.parse(data)
-
-    if(data.Estado == 'Sentado' && !id_medicion) { //SI SE DETECTO ESTADO SENTADO Y NO HAY UNA MEDICION LLAMAMOS A LA CREACION DE UNA NUEVA MEDICION
-      //CREAMOS UNA NUEVA MEDICION Y LLENAMOS EL DETALLE
-      let newData = {"peso": data.Peso, "distancia_respaldo": data.Distancia, "id_usuario": ID_USUARIO}
-      postData(URL_NUEVA_MEDICION, newData)
-      .then(data => {
-          console.log(data); // JSON data parsed by `data.json()` call
-          id_medicion = data.id_medicion
-      });
-    }else if(data.Estado == 'Sentado' && id_medicion) { //SI SE DETECTO ESTADO SENTADO Y HAY UNA MEDICION EN CURSO
-      //LLENAMOS EL DETALLE
-      let newData = {"peso": data.Peso, "distancia_respaldo": data.Distancia, "id_medicion": id_medicion}
-      postData(URL_MEDICION_DETALLE, newData)
-      .then(data => {
-          console.log(data); // JSON data parsed by `data.json()` call
-      });
-    }else if(data.Estado == 'Levantado' && id_medicion) { //SI SE DETECTO ESTADO LEVANTADO Y HAY UNA MEDICION EN CURSO
-      //FINALIZAMOS LA MEDICION
-      let newData = {"id_medicion": id_medicion}
-      postData(URL_FINALIZAR_MEDICION, newData)
-      .then(data => {
-          console.log(data); // JSON data parsed by `data.json()` call
-      });
+    try{
+      data=JSON.parse(data)
+    }catch{
+      return 
     }
+
+    if(( !obj || !obj.Peso ) && data.Peso){
+      obj = data
+
+      postData('http://localhost:3000/setUser', data)
+      .then(data => {
+          console.log(data); // JSON data parsed by `data.json()` call
+          
+      });
+
+      postData('http://localhost:3000/setData', data)
+      .then(data => {
+          console.log(data); // JSON data parsed by `data.json()` call
+      });
+      
+    } else if(data.Peso) {
+      obj = data
+
+      postData('http://localhost:3000/setUser', data)
+      .then(data => {
+          console.log(data); // JSON data parsed by `data.json()` call
+          
+      });
+
+      postData('http://localhost:3000/setData', data)
+      .then(data => {
+          console.log(data); // JSON data parsed by `data.json()` call
+      });
+    } else {
+      obj = data
+    }
+
+
+
+    // if(data.Estado == 'Sentado' && !id_medicion) { //SI SE DETECTO ESTADO SENTADO Y NO HAY UNA MEDICION LLAMAMOS A LA CREACION DE UNA NUEVA MEDICION
+    //   //CREAMOS UNA NUEVA MEDICION Y LLENAMOS EL DETALLE
+    //   let newData = {"peso": data.Peso, "distancia_respaldo": data.Distancia, "id_usuario": ID_USUARIO}
+    //   postData(URL_NUEVA_MEDICION, newData)
+    //   .then(data => {
+    //       console.log(data); // JSON data parsed by `data.json()` call
+    //       id_medicion = data.id_medicion
+    //   });
+    // }else if(data.Estado == 'Sentado' && id_medicion) { //SI SE DETECTO ESTADO SENTADO Y HAY UNA MEDICION EN CURSO
+    //   //LLENAMOS EL DETALLE
+    //   let newData = {"peso": data.Peso, "distancia_respaldo": data.Distancia, "id_medicion": id_medicion}
+    //   postData(URL_MEDICION_DETALLE, newData)
+    //   .then(data => {
+    //       console.log(data); // JSON data parsed by `data.json()` call
+    //   });
+    // }else if(data.Estado == 'Levantado' && id_medicion) { //SI SE DETECTO ESTADO LEVANTADO Y HAY UNA MEDICION EN CURSO
+    //   //FINALIZAMOS LA MEDICION
+    //   let newData = {"id_medicion": id_medicion}
+    //   postData(URL_FINALIZAR_MEDICION, newData)
+    //   .then(data => {
+    //       console.log(data); // JSON data parsed by `data.json()` call
+    //   });
+    // }
 
 
 
@@ -69,5 +106,5 @@ async function postData(url = '', data = {}) {
     referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   });
-  return response.json(); // parses JSON response into native JavaScript objects
+  return response.json() // parses JSON response into native JavaScript objects
 }
