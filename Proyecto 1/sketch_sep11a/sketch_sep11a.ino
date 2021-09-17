@@ -38,6 +38,7 @@ void setup() {
 }
  
 void loop() {
+delay(3000);
 #ifdef DEBUG_HX711
 
   //lectura del peso
@@ -74,7 +75,7 @@ void loop() {
       enabled = false;
     }
   }
-  delay(500);
+  
   
 #endif
 }
