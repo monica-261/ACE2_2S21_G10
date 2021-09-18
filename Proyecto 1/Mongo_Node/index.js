@@ -28,7 +28,7 @@ const Data = require('./models/Data')
     newUser.Peso = actual.Peso
     console.log(newUser)
 
-    if(actual.name) { res.json({status: "ok"}); return }
+    if(actual.name) { res.json({status: "exists"}); return }
 
     let returnedUser =   new User(newUser).save(err => {
         if (err) { console.log("Error no se pudo Crear el Usuario", err); res.json({status: "error"}); return } 
@@ -43,7 +43,7 @@ const Data = require('./models/Data')
   app.post('/setUser', function (req, res){
     let data = req.body
 
-    User.findOne({ Peso: { $gt: data.Peso - 20, $lt: data.Peso + 20  }}, 
+    User.findOne({ Peso: { $gt: data.Peso - 10, $lt: data.Peso + 10  }}, 
       function(err, obj) { 
         if(err){ console.log("Error no se pudo Asignar el Usuario", err);  return }
         console.log('actualUser => ', obj)
@@ -59,6 +59,11 @@ const Data = require('./models/Data')
     
   })
 
+  app.post('/cleanUser', function (req, res){    
+    actual={}
+    console.log("cleaned")
+    res.json({status: "cleaned"})
+  })
 
   app.post('/setData', function (req, res){
     let data = req.body
