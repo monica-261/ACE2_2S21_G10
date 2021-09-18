@@ -170,11 +170,41 @@ const Time = require('./models/Time');
     })
   })
 
+  app.get('/tiempo_uso_por_dia_nombre', function (req, res){
+    Time.find({user: actual }, (err, obj) => {
+      if(err){ console.log("No se puedieron obtener los tiempos", err);  return }
+      let result = [];
+      for (let i = 0; i < obj.length; i++) {
+        const element = JSON.parse(JSON.stringify(obj[i]).replace("_", ""));
+
+        let fecha_tmp = element.createdAt.split('T')[0].split('-')
+        let index = result.map(r => r.dia).indexOf(dayNameFromDate(new Date(parseInt(fecha_tmp[0]), parseInt(fecha_tmp[1] - 1), parseInt(fecha_tmp[2]))))
+        if(index != -1){
+          result[index].tiempo_milis += element.end - element.begining
+          // result[index].tiempo_min += Math.floor(element.end - element.begining / 60000)
+        }else{
+          let fecha_tmp = element.createdAt.split('T')[0].split('-')
+          result.push({
+            dia: dayNameFromDate(new Date(parseInt(fecha_tmp[0]), parseInt(fecha_tmp[1] - 1), parseInt(fecha_tmp[2]))),
+            tiempo_milis: element.end - element.begining,
+          })
+        }
+      }
+      // result = result.sort((a, b) => { return a.tiempo_milis - b.tiempo_milis })
+      res.json(result);
+    })
+  })
+
 function weekNoFromDate(d){
   var oneJan = new Date(d.getFullYear(),0,1);
   var numberOfDays = Math.floor((d - oneJan) / (24 * 60 * 60 * 1000));
   var result = Math.ceil(( d.getDay() + 1 + numberOfDays) / 7);
   return result
+}
+
+function dayNameFromDate(d){
+  var days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+  return days[d.getDay()];
 }
 
 app.listen(port, function () {
