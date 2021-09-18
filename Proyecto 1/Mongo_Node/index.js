@@ -61,19 +61,17 @@ const Time = require('./models/Time')
     
   })
 
-  app.post('/cleanUser', function (req, res){    
-    actual={}
+  app.post('/cleanUser', function (req, res){        
     console.log("cleaned")
-    timeJson = {begining: actualTime, end:Date.now() , total: Date.now - actualTime}
+    let timeJson = {"user": actual, begining: actualTime, end:Date.now() , total: Date.now - actualTime}
 
-    new Data(timeJson).save(err => {
+    new Time(timeJson).save(err => {
         if (err) { console.log("Error no se pudo Guardar la infomacion", err); res.json({status: "Error"}); return } 
               
         console.log("Data Creada Exitosamente");
-        res.json({status: "ok"});
         
     });
-
+    actual={}
     actualTime = -1
     res.json({status: "cleaned"})
     
