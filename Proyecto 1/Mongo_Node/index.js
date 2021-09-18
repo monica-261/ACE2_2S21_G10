@@ -12,10 +12,12 @@ app.use(cors())
 
 var port = 3000;
 var actual = {Peso: 15.6}
+var actualTime = -1
 require('./database')
 
 const User = require('./models/User')
 const Data = require('./models/Data')
+const Time = require('./models/Time')
 
 
   app.get('/', function (req, res) {
@@ -62,13 +64,27 @@ const Data = require('./models/Data')
   app.post('/cleanUser', function (req, res){    
     actual={}
     console.log("cleaned")
+    timeJson = {begining: actualTime, end:Date.now() , total: Date.now - actualTime}
+
+    new Data(timeJson).save(err => {
+        if (err) { console.log("Error no se pudo Guardar la infomacion", err); res.json({status: "Error"}); return } 
+              
+        console.log("Data Creada Exitosamente");
+        res.json({status: "ok"});
+        
+    });
+
+    actualTime = -1
     res.json({status: "cleaned"})
+    
   })
 
   app.post('/setData', function (req, res){
     let data = req.body
 
     actual.Peso = data.Peso 
+    if(actualTime === -1) actualTime = Date.now()
+
     
     if(actual.name==undefined) return
 
