@@ -28,7 +28,7 @@ parser.on("data", data => {
       return 
     }
 
-    if(( !obj || !obj.Peso ) && data.Peso){
+    if(data.Estado=="Sentado"){
       obj = data
 
       postData('http://localhost:3000/setUser', data)
@@ -42,20 +42,13 @@ parser.on("data", data => {
           console.log(data); // JSON data parsed by `data.json()` call
       });
       
-    } else if(data.Peso) {
+    } else if(data.Estado=="Levantado"){
+      postData('http://localhost:3000/cleanUser', {})
+      .then(data => {
+          console.log(data); // JSON data parsed by `data.json()` call
+      });
       obj = data
-
-      postData('http://localhost:3000/setUser', data)
-      .then(data => {
-          console.log(data); // JSON data parsed by `data.json()` call
-          
-      });
-
-      postData('http://localhost:3000/setData', data)
-      .then(data => {
-          console.log(data); // JSON data parsed by `data.json()` call
-      });
-    } else {
+    }else {      
       obj = data
     }
 
