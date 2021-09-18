@@ -131,7 +131,7 @@ const Time = require('./models/Time');
           })
         }
       }
-      result = result.sort((a, b) => { return a - b })
+      result = result.sort((a, b) => { return b.tiempo_milis - a.tiempo_milis })
       res.json(result);
     })
   })
@@ -165,7 +165,7 @@ const Time = require('./models/Time');
           })
         }
       }
-      result = result.sort((a, b) => { return a - b })
+      result = result.sort((a, b) => { return a.no_semana - b.no_semana })
       res.json(result);
     })
   })
