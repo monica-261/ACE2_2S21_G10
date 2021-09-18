@@ -15,9 +15,18 @@ var actual = {Peso: 15.6}
 var actualTime = -1
 require('./database')
 
+actual = {
+  id: '6144f2dc455edb3d9a6e185f',
+  name: 'samuellllR',
+  edad: 209,
+  Peso: 60.49,
+  __v: 0
+}
+
+
 const User = require('./models/User')
 const Data = require('./models/Data')
-const Time = require('./models/Time')
+const Time = require('./models/Time');
 
 
   app.get('/', function (req, res) {
@@ -103,7 +112,38 @@ const Time = require('./models/Time')
     res.json(actual)
   })
 
+  app.get('/tiempo_uso_por_dia', function (req, res){
+    Time.find({user: actual }, (err, obj) => {
+      if(err){ console.log("No se puedieron obtener los tiempos", err);  return }
+      let result = [];
+      for (let i = 0; i < obj.length; i++) {
+        const element = JSON.parse(JSON.stringify(obj[i]).replace("_", ""));
 
+        let index = result.map(r => r.fecha).indexOf(element.createdAt.split('T')[0])
+        if(index != -1){
+          result[index].tiempo_milis += element.end - element.begining
+          // result[index].tiempo_min += Math.floor(element.end - element.begining / 60000)
+        }else{
+          result.push({
+            fecha: element.createdAt.split('T')[0],
+            tiempo_milis: element.end - element.begining,
+            // tiempo_min: Math.floor(element.end - element.begining / 60000)
+          })
+        }
+      }
+      result = result.sort((a, b) => { return a - b })
+      res.json(result);
+    })
+  })
+
+  app.get('/tendencia_peso', function (req, res){
+    Time.find({user: actual}, (err, obj) => {
+      if(err){ console.log("No se puedieron obtener los pesos", err);  return }
+      let data = JSON.parse(JSON.stringify(obj).replace("_", ""));
+      let result = data.map(d => ({fecha: d.createdAt, peso: d.user.Peso}))
+      res.json(result);
+    })
+  })
 
 app.listen(port, function () {
   console.log('Example app listening on port http://0.0.0.0:' + port + '!');
