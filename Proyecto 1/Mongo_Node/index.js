@@ -74,7 +74,7 @@ const Time = require('./models/Time')
     actual={}
     actualTime = -1
     res.json({status: "cleaned"})
-    
+
   })
 
   app.post('/setData', function (req, res){
@@ -99,7 +99,9 @@ const Time = require('./models/Time')
     
   })
 
-
+  app.get('/getUser', function (req, res){
+    res.json(actual)
+  })
 
 
 
