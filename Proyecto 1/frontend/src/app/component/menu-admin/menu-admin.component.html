@@ -1,0 +1,29 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <em class="navbar-brand" href="#">Book SA</em>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse form-inline" id="navbarNavAltMarkup">
+      <div class="navbar-nav">                
+        <a class="nav-item nav-link" href="/administrador/noaprobados">Aprob. pendientes</a>
+        <a class="nav-item nav-link" href="administrador/listarusuarios">Usuarios</a>
+        <a class="nav-item nav-link" href="/login" (click)="cerrarSesion()" >Log out</a>
+      </div>
+    </div>
+    <div>
+      <em>Bienvenido(a) {{usuarioAutenticado}}</em>
+    </div>
+  </nav>
+<br>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Book S.A.</h1>
+    </div>
+    <a class="btn btn-success btn-dark btn-sm ml-3">
+      Modulo Administrador
+    </a>
+  </section>
+</div>
+<br><br>
