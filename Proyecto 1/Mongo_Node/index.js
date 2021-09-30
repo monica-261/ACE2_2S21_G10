@@ -27,6 +27,7 @@ actual = {
 const User = require('./models/User')
 const Data = require('./models/Data')
 const Time = require('./models/Time');
+const { json } = require('express');
 
 
   app.get('/', function (req, res) {
@@ -34,22 +35,7 @@ const Time = require('./models/Time');
   })
 
 
-  app.post('/register', function (req, res){
-    let newUser = req.body
-    newUser.Peso = actual.Peso
-    console.log(newUser)
 
-    if(actual.name) { res.json({status: "exists"}); return }
-
-    let returnedUser =   new User(newUser).save(err => {
-        if (err) { console.log("Error no se pudo Crear el Usuario", err); res.json({status: "error"}); return } 
-              
-        console.log("Usuario Creado Exitosamente");
-        res.json({status: "created"});
-        
-      });
-    console.log(returnedUser)
-  })
 
   app.post('/setUser', function (req, res){
     let data = req.body
@@ -107,10 +93,8 @@ const Time = require('./models/Time');
 
     
   })
+// --------------------------------------------------------------------------
 
-  app.get('/getUser', function (req, res){
-    res.json(actual)
-  })
 
   app.get('/tiempo_uso_por_dia', function (req, res){
     Time.find({user: actual }, (err, obj) => {
@@ -195,18 +179,190 @@ const Time = require('./models/Time');
     })
   })
 
-function weekNoFromDate(d){
-  var oneJan = new Date(d.getFullYear(),0,1);
-  var numberOfDays = Math.floor((d - oneJan) / (24 * 60 * 60 * 1000));
-  var result = Math.ceil(( d.getDay() + 1 + numberOfDays) / 7);
-  return result
-}
+  app.get('/totalHours', function (req, res){
+    Time
+    .find({user: actual })
+    .exec((err, list) => {
+      if (err) throw err;
+      // console.log(list);
 
-function dayNameFromDate(d){
-  var days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
-  return days[d.getDay()];
-}
+      let totalH = list.reduce( (previousValue, currentValue) => {
+        // console.log('=> ', currentValue)
+        let newCurrentValue = JSON.parse(JSON.stringify(currentValue))
+        console.log(diff_hours(newCurrentValue.end, newCurrentValue.begining))
+        return previousValue + diff_hours(newCurrentValue.end, newCurrentValue.begining)
+      }, 0)
 
-app.listen(port, function () {
-  console.log('Example app listening on port http://0.0.0.0:' + port + '!');
-});
+      res.json({totalH: totalH})
+
+    })
+
+  })
+
+
+   app.get('/usageLog', function (req, res){
+    Time
+    .find({user: actual })
+    .exec((err, list) => {
+      if (err) throw err;
+      // console.log(list);
+
+
+      let logList = list.map((item) => {
+        newItem = JSON.parse(JSON.stringify(item))
+        return {date: new Date(newItem.begining).toLocaleDateString("en-US"), beginning: new Date(newItem.begining).toLocaleTimeString("en-US"), end: new Date(newItem.end).toLocaleTimeString("en-US")}
+      })
+
+      res.json(logList)
+
+    })
+
+  })
+
+  app.get('/avgWeight', function (req, res){
+    Time
+    .find({user: actual })
+    .exec((err, list) => {
+      if (err) throw err;
+      // console.log(list);
+
+      let hashList = []
+
+      for(node of list) {
+        item = JSON.parse(JSON.stringify(node))
+
+        if(!hashList[new Date(item.begining).toLocaleDateString("en-US")]) hashList[new Date(item.begining).toLocaleDateString("en-US")] = []
+        hashList[new Date(item.begining).toLocaleDateString("en-US")].push(item.user.Peso)
+        // console.log(item.user.Peso)
+      }
+      // console.log(hashList)
+
+      avrList = []
+      for(date in hashList){
+        const sum = hashList[date].reduce((a, b) => a + b, 0);
+        const avg = (sum / hashList[date].length) || 0;
+        avrList.push({date: date, avgWeight: avg })
+      }
+
+      res.json({ 'avgWeight': avrList })
+
+    })
+
+  })
+
+    app.get('/avgUsage', function (req, res){
+    Time
+    .find({user: actual })
+    .exec((err, list) => {
+      if (err) throw err;
+      // console.log(list);
+
+      let hashList = []
+
+      for(node of list) {
+        item = JSON.parse(JSON.stringify(node))
+
+        if(!hashList[new Date(item.begining).toLocaleDateString("en-US")]) hashList[new Date(item.begining).toLocaleDateString("en-US")] = []
+        hashList[new Date(item.begining).toLocaleDateString("en-US")].push(diff_hours(item.end, item.begining))
+        // console.log(item.user.Peso)
+      }
+      // console.log(hashList)
+
+      avrList = []
+      for(date in hashList){
+        const sum = hashList[date].reduce((a, b) => a + b, 0);
+        const avg = (sum / hashList[date].length) || 0;
+        avrList.push({date: date, avgWeight: avg })
+      }
+
+      res.json({ 'avgUsage': avrList })
+
+    })
+
+  })
+
+    app.get('/avgStandups', function (req, res){
+    Time
+    .find({user: actual })
+    .exec((err, list) => {
+      if (err) throw err;
+      // console.log(list);
+
+      let hashList = []
+
+      for(node of list) {
+        item = JSON.parse(JSON.stringify(node))
+
+        if(!hashList[new Date(item.begining).toLocaleDateString("en-US")]) hashList[new Date(item.begining).toLocaleDateString("en-US")] = []
+        hashList[new Date(item.begining).toLocaleDateString("en-US")].push(item.user.Peso)
+        // console.log(item.user.Peso)
+      }
+      // console.log(hashList)
+
+      avgList = []
+      for(date in hashList){
+        avgList.push({date: date, avgStandups: hashList[date].length})
+      }
+
+      res.json(avgList)
+
+    })
+
+  })
+
+  app.get('/Peso', function (req, res){
+    res.json({Peso: actual.Peso })
+  })
+
+  app.get('/time', function (req, res){
+    res.json({time : actualTime })
+  })
+
+  app.get('/getUser', function (req, res){
+    res.json(actual)
+  })
+
+  app.post('/register', function (req, res){
+    let newUser = req.body
+    newUser.Peso = actual.Peso
+    console.log(newUser)
+
+    if(actual.name) { res.json({status: "exists"}); return }
+
+    let returnedUser =   new User(newUser).save(err => {
+        if (err) { console.log("Error no se pudo Crear el Usuario", err); res.json({status: "error"}); return } 
+              
+        console.log("Usuario Creado Exitosamente");
+        res.json({status: "created"});
+        
+      });
+    console.log(returnedUser)
+  })
+
+  function weekNoFromDate(d){
+    var oneJan = new Date(d.getFullYear(),0,1);
+    var numberOfDays = Math.floor((d - oneJan) / (24 * 60 * 60 * 1000));
+    var result = Math.ceil(( d.getDay() + 1 + numberOfDays) / 7);
+    return result
+  }
+
+  function dayNameFromDate(d){
+    var days = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
+    return days[d.getDay()];
+  }
+
+
+  function diff_hours(dtt2, dtt1) {
+  
+  dt2 = new Date(dtt2)
+  dt1 = new Date(dtt1)
+
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= (60 * 60);
+  return diff;
+  
+ }
+
+  app.listen(port, function () {
+    console.log('Example app listening on port http://0.0.0.0:' + port + '!');
+  });
