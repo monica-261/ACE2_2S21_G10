@@ -1,6 +1,4 @@
 const database = require('../services/database');
-const fs =  require('fs')
-const path = require('path')
 
 module.exports.registrarMedicion = async function(data){
     let querys = []
@@ -22,31 +20,31 @@ module.exports.registrarMedicion = async function(data){
 } 
 
 module.exports.obtenerVelocidadViento = async function(){
-    const result = await database.ejecutarQuery('SELECT velocidad_viento, fecha FROM public.medicion ORDER BY fecha DESC')
+    const result = await database.ejecutarQuery(`SELECT velocidad_viento, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha ASC`)
 
     return result; 
 } 
 
 module.exports.obtenerHumedad = async function(){
-    const result = await database.ejecutarQuery('SELECT humedad, fecha FROM public.medicion ORDER BY fecha DESC')
+    const result = await database.ejecutarQuery(`SELECT humedad, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha ASC`)
 
     return result; 
 } 
 
 module.exports.obtenerTemperatura = async function(){
-    const result = await database.ejecutarQuery('SELECT temperatura, fecha FROM public.medicion ORDER BY fecha DESC')
+    const result = await database.ejecutarQuery(`SELECT temperatura, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha ASC`)
 
     return result; 
 } 
 
 module.exports.obtenerLuz = async function(){
-    const result = await database.ejecutarQuery('SELECT luz, fecha FROM public.medicion ORDER BY fecha DESC')
+    const result = await database.ejecutarQuery(`SELECT luz, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha ASC`)
 
     return result; 
 } 
 
 module.exports.obtenerDireccionViento = async function(){
-    const result = await database.ejecutarQuery('SELECT direccion_viento, fecha FROM public.medicion ORDER BY fecha DESC LIMIT 1')
+    const result = await database.ejecutarQuery(`SELECT direccion_viento, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha DESC LIMIT 1`)
 
     return result; 
 } 

@@ -5,10 +5,10 @@ const medicion = require('../controllers/medicion');
 
 //AUTENTICACION
 router.route('/medicion').post(medicion.registrarMedicion)
-router.route('/obtenerVelocidadViento').post(medicion.obtenerVelocidadViento)
-router.route('/obtenerHumedad').post(medicion.obtenerHumedad)
-router.route('/obtenerTemperatura').post(medicion.obtenerTemperatura)
-router.route('/obtenerLuz').post(medicion.obtenerLuz)
-router.route('/obtenerDireccionViento').post(medicion.obtenerDireccionViento)
+router.route('/obtenerVelocidadViento').get(medicion.obtenerVelocidadViento)
+router.route('/obtenerHumedad').get(medicion.obtenerHumedad)
+router.route('/obtenerTemperatura').get(medicion.obtenerTemperatura)
+router.route('/obtenerLuz').get(medicion.obtenerLuz)
+router.route('/obtenerDireccionViento').get(medicion.obtenerDireccionViento)
 
 module.exports = router

@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "96133955-a2da-41a2-a1ca-1e2e243c1865",
+		"name": "Arqui2-Practica2",
+		"description": "Documentación para el uso de endpoints para insertar y consumir datos de la base de datos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "INSERTAR MEDICIÓN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"velocidad_viento\": 0.5,\r\n    \"humedad\": 10,\r\n    \"temperatura\": 9,\r\n    \"luz\": 8,\r\n    \"direccion_viento\": \"O\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/medicion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"medicion"
+					]
+				},
+				"description": "Inserta una medición en la base de datos, retorna estado 200 si la operación fue correcta."
+			},
+			"response": []
+		},
+		{
+			"name": "MEDICIONES VELOCIDAD VIENTO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/obtenerVelocidadViento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"obtenerVelocidadViento"
+					]
+				},
+				"description": "Obtiene todas las mediciones de la velocidad del viento realizadas ordenadas desde la más reciente. Retorna un estado 200 si se obtuvieron los datos."
+			},
+			"response": []
+		},
+		{
+			"name": "MEDICIONES HUMEDAD",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/obtenerHumedad",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"obtenerHumedad"
+					]
+				},
+				"description": "Obtiene todas las mediciones de la humedad realizadas ordenadas desde la más reciente. Retorna un estado 200 si se obtuvieron los datos."
+			},
+			"response": []
+		},
+		{
+			"name": "MEDICIONES TEMPERATURA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/obtenerTemperatura",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"obtenerTemperatura"
+					]
+				},
+				"description": "Obtiene todas las mediciones de la temperatura realizadas ordenadas desde la más reciente. Retorna un estado 200 si se obtuvieron los datos."
+			},
+			"response": []
+		},
+		{
+			"name": "MEDICIONES LUZ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/obtenerLuz",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"obtenerLuz"
+					]
+				},
+				"description": "Obtiene todas las mediciones de la luz realizadas ordenadas desde la más reciente. Retorna un estado 200 si se obtuvieron los datos."
+			},
+			"response": []
+		},
+		{
+			"name": "DIRECCIÓN VIENTO ACTUAL (ÚLTIMA INSERTADA)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/obtenerDireccionViento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"obtenerDireccionViento"
+					]
+				},
+				"description": "Obtiene la última dirección del viento registrada. Retorna un estado 200 si se obtuvieron los datos."
+			},
+			"response": []
+		}
+	]
+}

@@ -28,7 +28,7 @@ module.exports.obtenerVelocidadViento = async function (request, response, next)
         const result = await medicion.obtenerVelocidadViento()
 
         response.status(200).json({
-            registros: result,
+            registros: result.rows,
             status: 200
         })
     } catch (error) {
@@ -42,7 +42,7 @@ module.exports.obtenerHumedad = async function (request, response, next) {
         const result = await medicion.obtenerHumedad()
 
         response.status(200).json({
-            registros: result,
+            registros: result.rows,
             status: 200
         })
     } catch (error) {
@@ -56,7 +56,7 @@ module.exports.obtenerTemperatura = async function (request, response, next) {
         const result = await medicion.obtenerTemperatura()
 
         response.status(200).json({
-            registros: result,
+            registros: result.rows,
             status: 200
         })
     } catch (error) {
@@ -70,7 +70,7 @@ module.exports.obtenerLuz = async function (request, response, next) {
         const result = await medicion.obtenerLuz()
 
         response.status(200).json({
-            registros: result,
+            registros: result.rows,
             status: 200
         })
     } catch (error) {
@@ -84,7 +84,7 @@ module.exports.obtenerDireccionViento = async function (request, response, next)
         const result = await medicion.obtenerDireccionViento()
 
         response.status(200).json({
-            registros: result,
+            registros: result.rows,
             status: 200
         })
     } catch (error) {
