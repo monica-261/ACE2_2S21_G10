@@ -17,7 +17,12 @@ port.on("open", () => {
 parser.on("data", data => {
     console.log(data)
     data=JSON.parse(data)
-    let newData = {"humedad":data.humidity, "temperatura": data.temp, "velocidad_viento":data.velocity, "direccion_viento": data.direction}
+    let newData = {
+      "humedad":data.humidity, 
+      "temperatura": data.temp, 
+      "velocidad_viento":data.velocity, 
+      "direccion_viento": data.direction, 
+      "luz": data.luz || 0}
     postData('http://localhost:3000/api/medicion', newData)
     .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
