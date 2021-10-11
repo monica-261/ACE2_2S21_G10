@@ -10,5 +10,6 @@ router.route('/obtenerHumedad').get(medicion.obtenerHumedad)
 router.route('/obtenerTemperatura').get(medicion.obtenerTemperatura)
 router.route('/obtenerLuz').get(medicion.obtenerLuz)
 router.route('/obtenerDireccionViento').get(medicion.obtenerDireccionViento)
+router.route('/obtenerEstadoGeneral').get(medicion.obtenerEstadoGeneral)
 
 module.exports = router

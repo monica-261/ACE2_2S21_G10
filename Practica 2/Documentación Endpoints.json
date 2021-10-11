@@ -140,6 +140,26 @@
 				"description": "Obtiene la última dirección del viento registrada. Retorna un estado 200 si se obtuvieron los datos."
 			},
 			"response": []
+		},
+		{
+			"name": "OBTENER ESTADO GENERAL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/obtenerEstadoGeneral",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"obtenerEstadoGeneral"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

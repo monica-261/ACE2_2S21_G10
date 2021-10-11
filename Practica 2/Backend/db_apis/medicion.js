@@ -47,4 +47,10 @@ module.exports.obtenerDireccionViento = async function(){
     const result = await database.ejecutarQuery(`SELECT direccion_viento, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha DESC LIMIT 1`)
 
     return result; 
+}
+
+module.exports.obtenerEstadoGeneral = async function(){
+    const result = await database.ejecutarQuery(`SELECT luz, temperatura, humedad, velocidad_viento, to_char(fecha, 'DD/MM/YYYY HH24:MI:SS') fecha_hora FROM public.medicion ORDER BY fecha DESC LIMIT 1`)
+
+    return result; 
 } 
