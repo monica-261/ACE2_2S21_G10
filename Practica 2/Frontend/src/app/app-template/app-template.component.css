@@ -1,0 +1,52 @@
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    /*margin-top: 80px;*/
+    transition: all 0.3s;
+}
+
+
+.content-after {
+    padding-left: 150px;
+}
+
+@media (max-width: 768px) {
+    #sidebar-content {
+        min-width: 0px;
+        max-width: 0px;
+    }
+    #sidebar {
+        min-width: 0px;
+        max-width: 0px;
+        text-align: center;
+    }
+    #sidebar a[aria-expanded="false"]::before, #sidebar a[aria-expanded="true"]::before {
+        top: auto;
+        bottom: 0px;
+        right: 0%;
+        -webkit-transform: translateX(50%);
+        -ms-transform: translateX(50%);
+        transform: translateX(50%);
+    }    
+    #sidebar ul li a {
+        padding: 0px 0px;
+        text-align: center;
+        font-size: 0.85em;
+    }    
+    #sidebar ul li a i {
+        display: block;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+    #sidebar ul ul a {
+        padding: 0px !important;
+    }
+    .content-before {
+        padding-left: 0px;
+    }
+}
+
+
