@@ -61,6 +61,11 @@ export class CreceComponent implements AfterViewInit  {
   estado_visibilidad : string;
   estado_lluvia : string;
   estado_calor : string;
+
+  vientoB:boolean = true;
+  solB:boolean = true;
+  lluviaB:boolean = true;
+  calorB:boolean = true;
   
   constructor( private cotizadorService: CotizadorService, private appService: AppServiceService) {
 
@@ -76,6 +81,10 @@ export class CreceComponent implements AfterViewInit  {
         this.estado_lluvia = this.estadoGeneral.estado_lluvia;
         this.estado_viento = this.estadoGeneral.estado_viento;
         this.estado_visibilidad = this.estadoGeneral.estado_visibilidad;
+        this.vientoB = !(this.estado_viento == 'normal');
+        this.solB = !(this.estado_visibilidad == 'nublado');
+        this.lluviaB = (this.estado_lluvia == 'con lluvia');
+        this.calorB = (this.estado_calor == 'con calor');
       });
 
       this.cotizadorService.obtieneVelocidadViento().subscribe(data => {
@@ -85,7 +94,11 @@ export class CreceComponent implements AfterViewInit  {
 
         let dataParam : number[] = [];
         let labelParam : string[] = [];
-        for(let i = 0; i < this.viento.registros.length; i++){
+        let i = 0;
+        if(this.viento.registros.length > 15){
+          i = this.viento.registros.length - 15;
+        }
+        for(i = i; i < this.viento.registros.length; i++){
           dataParam.push(parseFloat(this.viento.registros[i].velocidad_viento));
           labelParam.push(this.viento.registros[i].fecha_hora);
         }
@@ -100,7 +113,11 @@ export class CreceComponent implements AfterViewInit  {
 
         let dataParam : number[] = [];
         let labelParam : string[] = [];
-        for(let i = 0; i < this.humedad.registros.length; i++){
+        let i = 0;
+        if(this.humedad.registros.length > 15){
+          i = this.humedad.registros.length - 15;
+        }
+        for(i = i; i < this.humedad.registros.length; i++){
           dataParam.push(parseFloat(this.humedad.registros[i].humedad));
           labelParam.push(this.humedad.registros[i].fecha_hora);
         }
@@ -115,12 +132,16 @@ export class CreceComponent implements AfterViewInit  {
 
         let dataParam : number[] = [];
         let labelParam : string[] = [];
-        for(let i = 0; i < this.humedad.registros.length; i++){
-          dataParam.push(parseFloat(this.humedad.registros[i].humedad));
-          labelParam.push(this.humedad.registros[i].fecha_hora);
+        let i = 0;
+        if(this.temperatura.registros.length > 15){
+          i = this.temperatura.registros.length - 15;
+        }
+        for(i = i; i < this.temperatura.registros.length; i++){
+          dataParam.push(parseFloat(this.temperatura.registros[i].temperatura));
+          labelParam.push(this.temperatura.registros[i].fecha_hora);
         }
 
-        this.humedadChartMethod(dataParam, labelParam);
+        this.direcChartMethod(dataParam, labelParam);
       });
 
       this.cotizadorService.obtieneLuz().subscribe(data => {
@@ -130,7 +151,11 @@ export class CreceComponent implements AfterViewInit  {
 
         let dataParam : number[] = [];
         let labelParam : string[] = [];
-        for(let i = 0; i < this.luz.registros.length; i++){
+        let i = 0;
+        if(this.luz.registros.length > 15){
+          i = this.luz.registros.length - 15;
+        }
+        for(i = i; i < this.luz.registros.length; i++){
           dataParam.push(parseFloat(this.luz.registros[i].luz));
           labelParam.push(this.luz.registros[i].fecha_hora);
         }
@@ -157,28 +182,6 @@ export class CreceComponent implements AfterViewInit  {
 
         }
         this.dateDireccion = this.direccion.registros[this.direccion.registros.length - 1].fecha_hora;
-
-        let dataParam : number[] = [0,0,0,0];
-        let labelParam : string[] = ['Oeste', 'Este', 'Norte', 'Sur'];
-        for(let i = 0; i < this.direccion.registros.length; i++){
-          switch(this.direccion.registros[i].direccion_viento){
-            case "O":
-              dataParam[0] = dataParam[0] + 1;
-              break;
-            case "E":
-              dataParam[1] = dataParam[1] + 1;
-              break;
-            case "S":
-              dataParam[2] = dataParam[2] + 1;
-              break;
-            case "N":
-              dataParam[3] = dataParam[3] + 1;
-              break;
-  
-          }
-        }
-
-        this.direcChartMethod(dataParam, labelParam);
       });
      
       await this.delay(3000);
@@ -263,7 +266,7 @@ export class CreceComponent implements AfterViewInit  {
         labels: labelParam,
         datasets: [
           {
-            label: 'Dirección del viento',
+            label: 'Temperatura',
             fill: false,
             lineTension: 0.1,
             backgroundColor: 'rgba(75,192,192,0.4)',

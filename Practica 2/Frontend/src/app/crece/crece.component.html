@@ -39,18 +39,46 @@
           </div>
         </div>
       </div>
+      <table>
+        <tr>
+          <td WIDTH="250" >Vientos:{{estado_viento}}</td>
+          <td WIDTH="250" >Visibilidad:{{estado_visibilidad}}</td>
+          <td WIDTH="250" >Lluvia: {{estado_lluvia}}</td>
+          <td WIDTH="250" > Calor: {{estado_calor}}</td>
+          
+        </tr>
+        <tr>
+          <td WIDTH="250" >
+            <img *ngIf= "vientoB" src="./assets/img/con_viento.png" width="150" height="150">
+            <img *ngIf= "!vientoB" src="./assets/img/sin_viento.png" width="150" height="150">
+          </td>
+          <td WIDTH="250" >
+            <img *ngIf= "solB" src="./assets/img/sol.png" width="150" height="150">
+            <img *ngIf= "!solB" src="./assets/img/pngwing.com.png" width="150" height="150">
+          </td>
+          <td WIDTH="250" >
+            <img *ngIf= "lluviaB" src="../assets/img/lluvia.png" width="150" height="150">
+            <img *ngIf= "!lluviaB" src="../assets/img/sin_lluvi.png" width="150" height="150">
+          </td>
+          <td WIDTH="200" >
+            <img *ngIf= "calorB" src="./assets/img/pngwing.com (1).png" width="150" height="150">
+            <img *ngIf= "!calorB" src="./assets/img/pngwing.com (2).png" width="150" height="150">
+          </td>
+        </tr>
+      </table>
       <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
           <div class="card tale-bg">
             <div class="card-people mt-auto">
               <img src="./assets/img/people.svg" alt="people">
               <div class="weather-info">
-                <div>
+                <div class="d-flex">
                   <div>
-                    <h6><b>Vientos:</b> {{estado_viento}}</h6>
-                    <h6><b>Visibilidad:</b> {{estado_visibilidad}}</h6>
-                    <h6><b>Lluvia:</b> {{estado_lluvia}}</h6>
-                    <h6><b>Calor:</b> {{estado_calor}}</h6>
+                    <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>{{cantTemperatura}}<sup>C</sup></h2>
+                  </div>
+                  <div class="ml-2">
+                    <h4 class="location font-weight-normal">Guatemala</h4>
+                    <h6 class="font-weight-normal">Ciudad de Guatemala</h6>
                   </div>
                 </div>
               </div>
@@ -63,7 +91,7 @@
               <div class="card card-tale">
                 <div class="card-body">
                   <p class="mb-4">Velocidad del viento</p>
-                  <p class="fs-30 mb-2">{{velViento}}</p>
+                  <p class="fs-30 mb-2">{{velViento}} km/h</p>
                   <p>{{dateViento}}</p>
                 </div>
               </div>
@@ -72,7 +100,7 @@
               <div class="card card-dark-blue">
                 <div class="card-body">
                   <p class="mb-4">Humedad atmosférica</p>
-                  <p class="fs-30 mb-2">{{cantHumedad}}</p>
+                  <p class="fs-30 mb-2">{{cantHumedad}} %</p>
                   <p>{{dateHumedad}}</p>
                 </div>
               </div>
@@ -92,7 +120,7 @@
               <div class="card card-light-danger">
                 <div class="card-body">
                   <p class="mb-4">Luz natural</p>
-                  <p class="fs-30 mb-2">{{cantLuz}}</p>
+                  <p class="fs-30 mb-2">{{cantLuz}} %</p>
                   <p>{{dateLuz}}</p>
                 </div>
               </div>
@@ -126,7 +154,7 @@
     <div class="col-lg-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Dirección del viento</h4>
+          <h4 class="card-title">Temperatura</h4>
           <canvas #direcCanvas style="height:200vh; width:200vw"></canvas>
         </div>
       </div>
