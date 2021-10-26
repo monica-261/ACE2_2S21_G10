@@ -1,9 +1,9 @@
 module.exports = {
     pool: {
-        host: 'chunee.db.elephantsql.com',
-        database: 'rkeflubq',
+        host: '34.69.27.124',
+        database: 'postgres',
         port: 5432,
-        user: 'rkeflubq',
-        password: 'pLN-XlfWTYFzk4s1aOdMinGMyDqBIwTa'
+        user: 'postgres',
+        password: '6gjh7ch89vyGj9iC'
     }
 }
