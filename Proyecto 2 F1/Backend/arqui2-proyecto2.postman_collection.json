@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "24a91a84-b62e-4df1-87f1-5e8feffbc06c",
+		"name": "arqui2-proyecto2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "REGISTRAR MEDICION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"LEVANTADO\",\r\n    \"data\": {\r\n        \"peso\": 68.7,\r\n        \"distancia\": 8\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4444/api/medicion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"medicion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TIEMPO TOTAL SENTADO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/tiempoSentadoTotal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"tiempoSentadoTotal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TIEMPO ACTUAL SENTADO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/tiempoSentadoActual",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"tiempoSentadoActual"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PESO HISTORICO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/pesoHistorico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"pesoHistorico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PESO ACTUAL PROMEDIO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/pesoActualPromedio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"pesoActualPromedio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HORARIOS DE USO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/horariosDeUso",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"horariosDeUso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CANTIDAD LEVANTADO POR DIA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/cantidadLevantadoPorDia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"cantidadLevantadoPorDia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DISTANCIA DEL RESPALDO PROMEDIO ACTUAL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/distanciaDelRespaldoPromedioActual",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"distanciaDelRespaldoPromedioActual"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DISTANCIA DEL RESPALDO PROMEDIO HISTORICO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/distanciaDelRespaldoPromedioHistorico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"distanciaDelRespaldoPromedioHistorico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DISTANCIA DEL RESPALDO HISTORICO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/distanciaDelRespaldoHistorico",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"distanciaDelRespaldoHistorico"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTURAS INCORRECTAS POR MINUTO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/cantidadPosturasIncorrectasPorMinuto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"cantidadPosturasIncorrectasPorMinuto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTURAS INCORRECTAS POR HORA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/cantidadPosturasIncorrectasPorHora",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"cantidadPosturasIncorrectasPorHora"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTURAS INCORRECTAS POR DIA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/cantidadPosturasIncorrectasPorDia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"cantidadPosturasIncorrectasPorDia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DISTANCIA CON POSTURA ACTUAL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4444/api/distanciaDelRespaldoActual",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"api",
+						"distanciaDelRespaldoActual"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
