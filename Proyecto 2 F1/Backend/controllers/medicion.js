@@ -6,6 +6,7 @@ let medicion_actual;
 const MALA_POSTURA = 10
 
 module.exports.medicion = async function (request, response, next) {
+    console.log(request.body)
     try {
         let { tipo, data } = request.body
         let { peso, distancia } = data
