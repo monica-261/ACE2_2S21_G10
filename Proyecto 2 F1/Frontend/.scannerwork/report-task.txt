@@ -1,0 +1,6 @@
+projectKey=practica-ace2
+serverUrl=https://tools.universales.com/sonarqube
+serverVersion=7.1.0.11001
+dashboardUrl=https://tools.universales.com/sonarqube/dashboard/index/practica-ace2
+ceTaskId=AXs1_6Kjoan69m_saLkt
+ceTaskUrl=https://tools.universales.com/sonarqube/api/ce/task?id=AXs1_6Kjoan69m_saLkt

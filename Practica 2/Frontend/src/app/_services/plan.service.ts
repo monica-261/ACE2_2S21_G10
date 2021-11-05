@@ -11,42 +11,42 @@ export class CotizadorService {
     constructor(private http: HttpClient) { }
 
     obtieneVelocidadViento() : Observable<any>{
-        return this.http.get("http://localhost:3000/api/obtenerVelocidadViento")
+        return this.http.get("http://34.125.220.159:3000/api/obtenerVelocidadViento")
         .pipe(
             catchError(this.handleError)
         )
     }
 
     obtieneHumedad() : Observable<any>{
-        return this.http.get("http://localhost:3000/api/obtenerHumedad")
+        return this.http.get("http://34.125.220.159:3000/api/obtenerHumedad")
         .pipe(
             catchError(this.handleError)
         )
     }
 
     obtieneTemperatura() : Observable<any>{
-        return this.http.get("http://localhost:3000/api/obtenerTemperatura")
+        return this.http.get("http://34.125.220.159:3000/api/obtenerTemperatura")
         .pipe(
             catchError(this.handleError)
         )
     }
 
     obtieneLuz() : Observable<any>{
-        return this.http.get("http://localhost:3000/api/obtenerLuz")
+        return this.http.get("http://34.125.220.159:3000/api/obtenerLuz")
         .pipe(
             catchError(this.handleError)
         )
     }
 
     obtieneDireccionViento() : Observable<any>{
-        return this.http.get("http://localhost:3000/api/obtenerDireccionViento")
+        return this.http.get("http://34.125.220.159:3000/api/obtenerDireccionViento")
         .pipe(
             catchError(this.handleError)
         )
     }
 
     obtieneEstado() : Observable<any>{
-        return this.http.get("http://localhost:3000/api/obtenerEstadoGeneral")
+        return this.http.get("http://34.125.220.159:3000/api/obtenerEstadoGeneral")
         .pipe(
             catchError(this.handleError)
         )

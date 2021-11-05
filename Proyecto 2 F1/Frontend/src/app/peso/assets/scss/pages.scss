@@ -1,0 +1,112 @@
+/*
+Template Name: Admin Press Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+
+@import 'variable';
+
+
+/*============================================================== 
+ For all pages 
+ ============================================================== */
+
+#main-wrapper {
+  width: 100%;
+}
+
+.boxed #main-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+  .sidebar-footer {
+    position: absolute;
+  }
+  .footer {
+    display: none;
+  }
+}
+
+/*******************
+ Topbar
+*******************/
+
+.topbar {
+  position: relative;
+  z-index: 50;
+  .top-navbar {
+    min-height: 50px;
+    padding: 0px 15px 0 0;
+    .dropdown-toggle::after {
+      display: none;
+    }
+    .navbar-header {
+      line-height: 45px;
+      text-align: center;
+      .navbar-brand {
+        margin-right: 0px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        .light-logo {
+          display: none;
+        }
+        b {
+          line-height: 60px;
+          display: inline-block;
+        }
+      }
+    }
+    .navbar-nav>.nav-item>.nav-link {
+      padding-left: .75rem;
+      padding-right: .75rem;
+      font-size: 15px;
+      line-height: 40px;
+    }
+    .navbar-nav>.nav-item.show {
+      background: $dark-transparent;
+    }
+  }
+  .profile-pic {
+    width: 30px;
+    border-radius: 100%;
+  }
+ 
+  
+}
+
+
+.page-wrapper {
+  padding-bottom: 60px;
+  height: calc(100vh - 64px); 
+  position: relative;
+    overflow: auto;
+}
+
+.container-fluid {
+  padding: 0 30px 25px 30px;
+}
+
+
+/*******************
+ Footer
+*******************/
+
+.footer {
+  bottom: 0;
+  color: $bodytext;
+  left: 0px;
+  padding: 17px 15px;
+  position: absolute;
+  right: 0;
+  border-top: 1px solid $border;
+  background: $white;
+}
+
+
+.navbar-custom {
+  background: linear-gradient(-90deg,#01a7cb,#004f97);
+  color:#ffffff;
+  
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+</head>
+<body data-spy="scroll" data-target="#myMenu" >
+<div class="container-fluid p-0 fixed-top">
+  <div class="bg-uni">
+    <header class="blog-header py-3 ">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-12 text-center"> <a class="blog-header-logo text-dark" href="#"><img src="./assets/img/logo-practica.png" alt="universales" height="80"></a> </div>
+      </div>
+    </header>
+    <div class="nav-scroller">
+      <nav class="navbar navbar-expand-md justify-content-between main-menu" id="myMenu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation"> </button>
+        <div class="collapse navbar-collapse " id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto mr-auto justify-content-center">
+            <li class="nav-item"> <a class="nav-link" href="#inicio">Inicio</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#actividad">Actividad</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#peso">Peso</a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#distancia">Distancia</a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="#posturas">Posturas</a> </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="container top-175 padding-bottom-87" id="inicio">
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-md-12 grid-margin">
+          <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+              <h3 class="font-weight-bold">Posturas incorrectas</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Posturas por minuto</h4>
+                <canvas #minutoCanvas style="height:200vh; width:200vw"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Posturas por hora</h4>
+                <canvas #horaCanvas style="height:200vh; width:200vw"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Posturas por día</h4>
+                <canvas #diaCanvas style="height:200vh; width:200vw"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS --> 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"  crossorigin="anonymous"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"  crossorigin="anonymous"></script> 
+
+<!-- jQuery datepicker --> 
+<script src="js/gijgo-combined-1.9.11/gijgo.min.js" type="text/javascript"></script> 
+
+<!--Active navbar--> 
+
+<script>
+$('body').scrollspy({ target: '#myMenu' })
+</script> 
+
+<!-- Optional JavaScript --> 
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>
+</body>
+</html>
