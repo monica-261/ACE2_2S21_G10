@@ -31,6 +31,8 @@ export class ActividadComponent implements AfterViewInit  {
   totalHoras: number;
   actualHoras: number;
   actual: boolean = false;
+  activo: boolean = false;
+
   @ViewChild('vientoCanvas', {static: false}) vientoCanvas: ElementRef;
   vientoChart: any;
   constructor( private cotizadorService: CotizadorService, private appService: AppServiceService) {
@@ -44,6 +46,11 @@ export class ActividadComponent implements AfterViewInit  {
         this.cotizadorService.tiempoSentadoActual().subscribe(data => {
           if(data.status == 200){
             this.actualHoras = data.data.tiempo_horas;
+            if(this.actualHoras > 1){
+              this.activo = true
+            }else{
+              this.activo = false
+            }
             this.actual = true;
           }else{
             this.actual = false;

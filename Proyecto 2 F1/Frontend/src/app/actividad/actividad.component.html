@@ -54,9 +54,11 @@
                     <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i><sup></sup></h2>
                   </div>
                   <div class="ml-2">
-                    <h2 class="location font-weight-normal">Tiempo total sentado</h2>
-                    <h6 class="font-weight-normal">{{totalHoras}} horas</h6>
+
                     <h2 class="location font-weight-normal">Tiempo sentado actual</h2>
+                    <h6 class="font-weight-normal">{{totalHoras}} horas</h6>
+                    <h6 *ngIf = "activo" class="font-weight-normal"> ¡Vamos! Sé activo</h6>
+                    <h2 class="location font-weight-normal">Tiempo total sentado</h2>
                     <h6 *ngIf = "!actual" class="font-weight-normal"> No hay mediciones en curso</h6>
                     <h6 *ngIf = "actual" class="font-weight-normal"> {{actualHoras}} horas</h6>
                   </div>
