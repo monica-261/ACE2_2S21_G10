@@ -35,6 +35,7 @@ export class DistanciaComponent implements AfterViewInit  {
   actual: boolean = false;
   actual2: boolean = false;
   actual3: boolean = false;
+  postura: boolean = false;
   @ViewChild('vientoCanvas', {static: false}) vientoCanvas: ElementRef;
   vientoChart: any;
   constructor( private cotizadorService: CotizadorService, private appService: AppServiceService) {
@@ -56,6 +57,11 @@ export class DistanciaComponent implements AfterViewInit  {
 
         this.cotizadorService.distanciaDelRespaldoActual().subscribe(data => {
           if(data.status == 200){
+            if(data.postura == 'Mala postura'){
+              this.postura = true;
+            }else{
+              this.postura= false;
+            }
             this.distancia2 = data.data.distancia.toString() + " = " + data.postura;
             this.actual2 = true;
           }else{

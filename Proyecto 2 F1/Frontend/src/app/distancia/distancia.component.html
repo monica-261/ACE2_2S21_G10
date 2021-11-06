@@ -57,6 +57,8 @@
                     <h2 class="location font-weight-normal">Distancia respaldo actual</h2>
                     <h6 *ngIf = "!actual2" class="font-weight-normal"> No hay mediciones en curso</h6>
                     <h6 *ngIf = "actual2" class="font-weight-normal"> {{distancia2}}</h6>
+                    <h6 *ngIf = "!postura" class="font-weight-normal"> SIENTESE CORRECTAMENTE</h6>
+                    <h6 *ngIf = "postura" class="font-weight-normal"> Continua así</h6>
                     <h2 class="location font-weight-normal">Distancia del respaldo promedio actual</h2>
                     <h6 *ngIf = "!actual" class="font-weight-normal"> No hay mediciones en curso</h6>
                     <h6 *ngIf = "actual" class="font-weight-normal"> {{actualHoras}}</h6>
